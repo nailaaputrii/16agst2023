@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="SIMALDI Pelanggan">
+    <meta name="keywords" content="SIMALDI, pelanggan, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SIMALDI Pelanggan</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'pelanggan/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/style.css' %}" type="text/css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .room2-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ri-text {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- room2s Section Begin -->
+    <section class="rooms2-section spad">
+        <div class="container">
+            <div class="cardr">
+                <div class="card-bodyz">
+                    <a href="{% url 'pesanan_saya' %}" class="back-arrow">&#8592;</a>
+                    <h2 class="card-titlez"><b>FAKTUR PEMBAYARAN</b></h2>
+                                        <div class="ri-text">
+                                            <div class="card-body">
+                                                <form method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="card-textya">Id. Pembayaran</td>
+                                                            <td>:   {{ pemesanan.id_pembayaran }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">Nama</td>
+                                                            <td>:   {{ pemesanan.nama_pelanggan }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">Jenis Kamar</td>
+                                                            <td>:   {{ pemesanan.no_kamar_id.jenis_kamar }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">No. Kamar</td>
+                                                            <td>:   {{ pemesanan.no_kamar_id.no_kamar }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">Check-In</td>
+                                                            <td>:   {{ pemesanan.tanggal_checkin }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">Check-Out</td>
+                                                            <td>:   {{ pemesanan.tanggal_checkout }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">Jumlah yang harus dibayar</td>
+                                                            <td>: Rp.  {{ pemesanan.jumlah_pembayaran }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="card-textya">No. Rekening (BRI)</td>
+                                                            <td>: 7632-01-007520-53-0 (A.n Hotel Diamond)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div>
+                                                    <label for="id_bukti_pembayaran">Bukti Pembayaran:</label>
+                                                    {{ form.bukti_pembayaran }}
+                                                </div>
+                                                <button type="submit" class="tbl45">Kirim</button>
+                                            </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- room2s Section End -->
+
+    <!-- JavaScript -->
+    <script src="{% static 'pelanggan/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'pelanggan/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/main.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

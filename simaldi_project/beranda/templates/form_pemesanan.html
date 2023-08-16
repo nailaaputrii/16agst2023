@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="SIMALDI Pelanggan">
+    <meta name="keywords" content="SIMALDI, pelanggan, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SIMALDI Pelanggan</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'pelanggan/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'pelanggan/css/style.css' %}" type="text/css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .room2-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ri-text {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- room2s Section Begin -->
+    <section class="rooms2-section spad">
+        <div class="container">
+            <div class="cardm">
+                <div class="card-bodyz">
+                    <a href="{% url 'kamarpelanggan' %}" class="back-arrow">&#8592;</a>
+                    <h2 class="card-titlez"><b>FORM PEMESANAN</b></h2>
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success">
+                             {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="room2-item">
+                                {% if kamar.gambar_kamar %}
+                                    <img src="{{ kamar.gambar_kamar.url }}" alt="">
+                                {% endif %}
+                                <div class="ri-text">
+                                    <h4>{{ kamar.jenis_kamar.jenis_kamar }}</h4>
+                                    <h3>Rp{{ kamar.tarif }}<span>/Permalam</span></h3>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="r-o">Kapasitas:</td>
+                                                <td>Maksimal {{ kamar.kapasitas }} orang</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="r-o">Kasur:</td>
+                                                <td>{{ kamar.kasur }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="r-o">Fasilitas Lainnya:</td>
+                                                <td>{{ kamar.fasilitas_lainnya }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="ri-text">
+                                <div class="card-body">
+                                    <form method="post" id="pemesanan-form" action="/form_pemesanan/{{ kamar.id }}/" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.errors }}
+                            
+                                        <div class="form-groupz">
+                                            <label for="id_nama_pelanggan">Nama Pelanggan:</label>
+                                            <input type="text" id="id_nama_pelanggan" name="nama_pelanggan" required>
+                                        </div>
+                                        <div class="form-groupz">
+                                            <label for="id_jenis_kelamin_pelanggan">Jenis Kelamin:</label>
+                                            <select id="id_jenis_kelamin_pelanggan" name="jenis_kelamin_pelanggan" required>
+                                              <option value="Laki-laki">Laki-laki</option>
+                                              <option value="Perempuan">Perempuan</option>
+                                            </select>
+                                          </div>
+                                          <div class="form-groupz">
+                                            <label for="id_alamat_pelanggan" class="alamat">Alamat:</label>
+                                            <input type="text" id="id_alamat_pelanggan" name="alamat_pelanggan" required>
+                                          </div>
+                                        <div class="form-groupz">
+                                            <label for="id_no_telepon_pelanggan">No. Telepon:</label>
+                                            <input type="text" id="id_no_telepon_pelanggan" name="no_telepon_pelanggan" required>
+                                        </div>
+                                        <div class="form-groupz">
+                                            <label for="id_no_ktp_pelanggan">NIK:</label>
+                                            <input type="text" id="id_no_ktp_pelanggan" name="no_ktp_pelanggan" required>
+                                        </div>
+                                        <div class="form-groupz">
+                                            <label for="id_foto_ktp">Foto KTP:</label>
+                                            <input type="file" id="id_foto_ktp" name="foto_ktp" accept="image/*" required>
+                                          </div>
+
+                                        {% comment %} <div class="form-group">
+                                            <label class="form-label" for="id_no_kamar">Nomor Kamar:</label>
+                                            {{ form.no_kamar_id }}
+                                        </div> {% endcomment %}
+                        
+                                        <div class="form-group">
+                                            <label class="form-label" for="id_tanggal_checkin">Tanggal Check-in:</label>
+                                            <input type="date" name="tanggal_checkin" id="id_tanggal_checkin" class="form-control">
+                                        </div>
+                        
+                                        <div class="form-group">
+                                            <label class="form-label" for="id_tanggal_checkout">Tanggal Check-out:</label>
+                                            <input type="date" name="tanggal_checkout" id="id_tanggal_checkout" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="id_metode_pembayaran">Metode Pembayaran:</label>
+                                            <select name="metode_pembayaran" id="id_metode_pembayaran" class="form-control">
+                                                {% for choice in form.metode_pembayaran.field.choices %}
+                                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                        
+                                        <button type="submit" class="tbl">Kirim</button>
+                                        <div id="error-message" class="error-message"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- room2s Section End -->
+
+    <!-- JavaScript -->
+    <script src="{% static 'pelanggan/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'pelanggan/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'pelanggan/js/main.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

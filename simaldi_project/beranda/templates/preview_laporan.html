@@ -1,0 +1,347 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SIMALDI Manajer</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  {% comment %} <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"> {% endcomment %}
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        {% comment %} <img src="{% static 'assets/img/logo.png' %}" alt=""> {% endcomment %}
+        <span class="d-none d-lg-block">SIMALDI Manajer</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number"></span>
+          </a><!-- End Notification Icon -->
+
+        </li><!-- End Notification Nav -->
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link  collapsed" href="{% url 'manajer' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'daftar_pegawai' %}">
+          <i class="bi bi-person"></i>
+          <span>Kelola Pegawai</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'lihat_presensi' %}">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Lihat Presensi</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'daftar_laporan' %}">
+          <i class="bi bi-journal-text"></i>
+          <span>Kelola Laporan</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'loginview' %}" onclick="return confirm('Apakah Anda yakin ingin keluar dari akun ini?');">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Kelola Laporan</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'manajer' %}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'daftar_laporan' %}">Kelola Laporan</a></li>
+          <li class="breadcrumb-item active">Preview Laporan</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+            
+        <!-- Left side columns -->
+        <div class="col-lg-13">
+          <div class="row">
+
+            
+            <section class="section">
+              <div class="row">
+                <div class="col-lg-50">
+                  <div class="card">
+                    <div class="card-body">
+                     
+                      <!-- Bordered Table -->
+                          {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                          {% endif %}
+                          <div class="container2">
+                            <form id="filterForm" method="GET" action="{% url 'tampilkan_data_terfilter' jenis %}">
+                              {% csrf_token %}
+                              {% if jenis == 'pembayaran' %}
+                                  <h5><b>Laporan Data Pembayaran</b></h5>
+                                  <div class="form-group">
+                                      <label for="tanggal_awal">Tanggal Pembayaran Awal:</label>
+                                      <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal" value="{{ request.GET.tanggal_awal }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="tanggal_akhir">Tanggal Pembayaran Akhir:</label>
+                                      <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" value="{{ request.GET.tanggal_akhir }}">
+                                  </div>
+                              {% endif %}
+                              {% if jenis == 'pemesanan' %}
+                                  <h5><b>Laporan Data Pemesanan</b></h5>
+                                  <div class="form-group">
+                                      <label for="tanggal_checkin_awal">Tanggal Check-in Awal:</label>
+                                      <input type="date" class="form-control" id="tanggal_checkin_awal" name="tanggal_checkin_awal" value="{{ request.GET.tanggal_checkin_awal }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="tanggal_checkin_akhir">Tanggal Check-in Akhir:</label>
+                                      <input type="date" class="form-control" id="tanggal_checkin_akhir" name="tanggal_checkin_akhir" value="{{ request.GET.tanggal_checkin_akhir }}">
+                                  </div>
+                              {% endif %}
+                              {% if jenis == 'pelanggan' %}
+                                  <h5><b>Laporan Data Pelanggan</b></h5>
+                                  <div class="form-group">
+                                      <label for="tanggal_input_awal">Tanggal Input Awal:</label>
+                                      <input type="date" class="form-control" id="tanggal_input_awal" name="tanggal_input_awal" value="{{ request.GET.tanggal_input_awal }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="tanggal_input_akhir">Tanggal Input Akhir:</label>
+                                      <input type="date" class="form-control" id="tanggal_input_akhir" name="tanggal_input_akhir" value="{{ request.GET.tanggal_input_akhir }}">
+                                  </div>
+                              {% endif %}
+                              <button type="submit" class="btnfltr">Terapkan Filter</button>
+                          </form>
+                                                                                             
+                            {% if jenis == 'pelanggan' %}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="tab">
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Jenis Kelamin</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">No. Telepon</th>
+                                        <th scope="col">NIK</th>
+                                        <th scope="col">Tanggal Input</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pelanggan in data_laporan %}
+                                    <tr>
+                                        <td>{{ pelanggan.nama_pelanggan }}</td>
+                                        <td>{{ pelanggan.jenis_kelamin_pelanggan }}</td>
+                                        <td>{{ pelanggan.alamat_pelanggan }}</td>
+                                        <td>{{ pelanggan.no_telepon_pelanggan }}</td>
+                                        <td>{{ pelanggan.no_ktp_pelanggan }}</td>
+                                        <td>{{ pelanggan.tanggal_input }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        
+                            {% if jenis == 'pemesanan' %}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Pelanggan</th>
+                                        <th>No Kamar</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
+                                        <th>Metode Pembayaran</th>
+                                        <th>Jumlah Pembayaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pemesanan in data_laporan %}
+                                    <tr>
+                                        <td>{{ pemesanan.nama_pelanggan }}</td>
+                                        <td>{{ pemesanan.no_kamar_id.no_kamar }}</td>
+                                        <td>{{ pemesanan.tanggal_checkin }}</td>
+                                        <td>{{ pemesanan.tanggal_checkout }}</td>
+                                        <td>{{ pemesanan.metode_pembayaran }}</td>
+                                        <td>{{ pemesanan.jumlah_pembayaran }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6">Tidak ada pemesanan yang tersedia.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        
+                            {% if jenis == 'pembayaran' %}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="tab">
+                                        <th scope="col">Id. Pembayaran</th>
+                                        <th scope="col">Tanggal Pembayaran</th>
+                                        <th scope="col">Jumlah Pembayaran</th>
+                                        <th scope="col">Status Pembayaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pembayaran in data_laporan %}
+                                    <tr>
+                                        <td>{{ pembayaran.pemesanan.id_pembayaran }}</td>
+                                        <td>{{ pembayaran.tanggal_pembayaran }}</td>
+                                        <td>{{ pembayaran.jumlah_pembayaran }}</td>
+                                        <td>{{ pembayaran.status_pembayaran }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>                          
+                        <button type="button" class="btn2 btn-cetak" onclick="cetakLaporan()">Cetak Laporan</button>
+                        <script>
+                          function cetakLaporan() {
+                              var form = document.createElement('form');
+                              form.method = 'GET';
+                              form.action = "{% url 'cetak_laporan' jenis %}";
+
+                              var filterForm = document.getElementById('filterForm');
+                              var filterFormData = new FormData(filterForm);
+
+                              // Salin semua elemen input dari form filter ke form cetak
+                              for (var pair of filterFormData.entries()) {
+                                  var input = document.createElement('input');
+                                  input.type = 'hidden';
+                                  input.name = pair[0];
+                                  input.value = pair[1];
+                                  form.appendChild(input);
+                              }
+
+                              document.body.appendChild(form);
+                              form.submit();
+                          }
+                        </script>
+                        </div>
+                    </div>
+                  </div>
+                </div>    
+              </div>
+            </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Hotel Diamond</span></strong>. All Rights Reserved
+    </div>
+    <!-- <div class="credits"> -->
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div> -->
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

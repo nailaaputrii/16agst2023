@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMALDI Pegawai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'pegawai/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">FORM PRESENSI</h2>
+                {% if pesan %}
+                    <p class="card-text">{{ pesan }}</p>
+                {% endif %}
+                <form id="presensiForm" method="POST" action="{% url 'presensi' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="namaPegawai" class="card-subtitle">Nama Pegawai:</label>
+                      {{ form.pegawai }}
+                      <div class="notification" id="namaError"></div>
+                    </div>
+                    <div class="form-group flex-label">
+                      <label for="Bukti_Absen" class="card-subtitle">Bukti Presensi:</label>
+                      <div id="webcamContainer">
+                        <video id="webcamVideo" autoplay></video>
+                        <img id="previewImage" class="img-fluid" alt="Preview Foto" style="display: none;">
+                      </div>
+                      <input type="hidden" name="image_data" id="imageDataInput">
+                      <label for="captureButton" id="captureLabel" class="btn">Ambil Foto</label>
+                      <button id="ulangButton" class="nbt" style="display: none;" type="button"><b>Ulang Foto</b></button>
+                      <button type="submit" class="tbl" id="kirimButton"><b>Kirim</b></button>
+                    </div>
+                  </form>                                             
+            </div>
+        </div>
+    </div>
+    <script>
+        var video = document.getElementById('webcamVideo');
+        var captureButton = document.getElementById('captureLabel');
+        var ulangButton = document.getElementById('ulangButton');
+        var previewImage = document.getElementById('previewImage');
+        var imageDataInput = document.getElementById('imageDataInput');
+      
+        // Mengakses dan menampilkan tampilan webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+            video.srcObject = stream;
+          })
+          .catch(function(error) {
+            console.log('Error accessing webcam:', error);
+          });
+      
+        // Mengambil foto dari webcam
+        captureButton.addEventListener('click', function() {
+          var canvas = document.createElement('canvas');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          var context = canvas.getContext('2d');
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+          // Menampilkan hasil foto
+          video.style.display = 'none';
+          previewImage.style.display = 'block';
+          previewImage.src = canvas.toDataURL('image/png');
+      
+          // Mengubah tampilan tombol
+          captureButton.style.display = 'none';
+          ulangButton.style.display = 'inline-block';
+      
+          // Mengisi nilai input field dengan data gambar base64
+          var imageData = canvas.toDataURL('image/png');
+          imageDataInput.value = imageData;
+        });
+      
+        // Mengulangi proses pengambilan foto
+        ulangButton.addEventListener('click', function() {
+          video.style.display = 'block';
+          previewImage.style.display = 'none';
+          previewImage.src = '';
+      
+          captureButton.style.display = 'inline-block';
+          ulangButton.style.display = 'none';
+      
+          // Menghapus data gambar pada input field
+          imageDataInput.value = '';
+        });
+      </script>      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {% comment %} <script src="{% static 'pegawai/js/webcam.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'pegawai/js/main.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'pegawai/js/kirim.js' %}"></script> {% endcomment %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMALDI Pegawai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'Pegawai/css/style.css' %}">
+</head>
+<body>
+    <div class="cardv">
+        <div class="card-body">
+          <h5 class="card-title">Presensi Berhasil</h5>
+          <p class="card-text">Anda telah berhasil melakukan presensi.</p>
+          <a href="{% url 'logoutview' %}" class="btn" onclick="return confirm('Apakah Anda yakin ingin keluar dari akun ini?');">Logout</a>
+        </div>
+      </div>
+</body>
+</html>

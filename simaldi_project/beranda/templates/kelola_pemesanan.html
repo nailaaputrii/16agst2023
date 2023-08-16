@@ -1,0 +1,455 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SIMALDI Admin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  {% comment %} <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"> {% endcomment %}
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<style>
+  .pending {
+      color: red;
+  }
+</style>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        {% comment %} <img src="{% static 'assets/img/logo.png' %}" alt=""> {% endcomment %}
+        <span class="d-none d-lg-block">SIMALDI Admin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        {% comment %} <li class="nav-item dropdown">
+
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number"></span>
+          </a><!-- End Notification Icon -->
+
+
+
+        </li><!-- End Notification Nav --> {% endcomment %}
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed " href="{% url 'dbadmin' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'daftar_akun' %}">
+          <i class="bi bi-person-circle"></i>
+          <span>Kelola Akun</span>
+        </a>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'daftar_pelanggan' %}">
+          <i class="bi bi-person"></i>
+          <span>Kelola Pelanggan</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'kelola_nomor_kamar' %}">
+          <i class="bi bi-list-ol"></i>
+          <span>Kelola Nomor Kamar</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'daftar_kamar' %}">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Kelola Kamar</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'kelola_pemesanan' %}">
+            <i class="bi bi-menu-button-wide"></i>
+            <span>Kelola Pemesanan</span>
+            {% if unread_count > 0 %}
+            <span class="badge bg-danger badge-pill text-white" style="margin-left: 5px;">{{ unread_count }}</span>
+            {% endif %}
+        </a>
+    </li><!-- End Contact Page Nav -->
+      
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'kelola_pembayaran' %}">
+        <i class="bi bi-currency-dollar"></i>
+        <span>Kelola Pembayaran</span>
+        {% if jumlah_belum_dibaca > 0 %}
+          <span class="badge bg-danger badge-pill text-white" style="margin-left: 5px;">{{ jumlah_belum_dibaca }}</span>
+          {% endif %}
+      </a>
+    </li><!-- End Contact Page Nav -->
+    
+      <li class="nav-item">
+        <a class="nav-link  collapsed" href="{% url 'daftar_kunci' %}">
+          <i class="bi bi-key"></i>
+          <span>Kelola Kunci</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'logoutview' %}" onclick="return confirm('Apakah Anda yakin ingin keluar dari akun ini?');">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Kelola Pemesanan Kamar</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dbadmin' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active">Kelola Pemesanan</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">        
+        <!-- Left side columns -->
+        <div class="col-lg-13">
+          <div class="row"> 
+            <section class="section">
+              <div class="row">
+                <div class="col-lg-50">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="container">
+                        <h5 class="card-title">Data Pemesanan Hotel Diamond</h5>
+                        <div class="text-center">
+                          <a class='tbh' href="{% url 'tambah_pemesanan' %}">Tambah</a>
+                        </div>
+                      </div>
+                    <!-- Bordered Table -->
+                    {% if messages %}
+                    {% for message in messages %}
+                      <div class="alert alert-success">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                    {% endif %}
+                    <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id. Pemesanan</th>
+                        <th>Nama</th>
+                        <th>No Kamar</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Metode Pembayaran</th>
+                        <th>Jumlah Pembayaran</th>
+                        <th>Id. Pembayaran</th>
+                        <th>Status Kamar</th>
+                        <th>Status Konfirmasi</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for pemesanan in pemesanan_list reversed %}
+                      <tr>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.id_pemesanan }}</span>
+                          {% else %}
+                            {{ pemesanan.id_pemesanan }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.nama_pelanggan }}</span>
+                          {% else %}
+                            {{ pemesanan.nama_pelanggan }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.no_kamar_id.no_kamar }}</span>
+                          {% else %}
+                            {{ pemesanan.no_kamar_id.no_kamar }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.tanggal_checkin }}</span>
+                          {% else %}
+                            {{ pemesanan.tanggal_checkin }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.tanggal_checkout }}</span>
+                          {% else %}
+                            {{ pemesanan.tanggal_checkout }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.metode_pembayaran }}</span>
+                          {% else %}
+                            {{ pemesanan.metode_pembayaran }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.jumlah_pembayaran }}</span>
+                          {% else %}
+                            {{ pemesanan.jumlah_pembayaran }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.id_pembayaran }}</span>
+                          {% else %}
+                            {{ pemesanan.id_pembayaran }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.status_kamar }}</span>
+                          {% else %}
+                            {{ pemesanan.status_kamar }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if pemesanan.status_konfirmasi == 'Pending' %}
+                            <span class="text-danger">{{ pemesanan.status_konfirmasi }}</span>
+                          {% else %}
+                            {{ pemesanan.status_konfirmasi }}
+                          {% endif %}
+                        </td>
+                        <td>
+                          <form method="post" id="form-setuju" action="{% url 'setuju' pemesanan.id %}">
+                            {% csrf_token %}
+                            <button type="submit" id="form-setuju" class="btn btn-success mb-2"><i class="bi bi-check-lg"></i></button>
+                          </form>
+                          <form method="post" action="{% url 'tolak' pemesanan.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                      {% empty %}
+                      <tr>
+                        <td colspan="10">Tidak ada pemesanan yang tersedia.</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                    </table>
+
+
+                        </tbody>
+                        <!-- Table content here -->
+                      </table>
+                      <!-- End Bordered Table -->
+                    </div>
+                    <div class="text-right">
+                      <p>Jumlah Pemesanan: {{ jumlah_pemesanan }}</p>
+                    </div>
+                  </div>
+                </div>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+               
+            {% comment %} <section class="section">
+              <div class="row">
+                <div class="col-lg-50">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="container">
+                        <h5 class="card-title">Data Pemesanan Hotel Diamond</h5>
+                        <div class="text-center">
+                          <a class='tbh' href="{% url 'tambah_pemesanan' %}">Tambah</a>
+                        </div>
+                      </div>
+                      <!-- Bordered Table -->
+                      {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Id. Pemesanan</th>
+                            <th>Nama</th>
+                            <th>No Kamar</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Metode Pembayaran</th>
+                            <th>Jumlah Pembayaran</th>
+                            <th>Id. Pembayaran</th>
+                            <th>Status Konfirmasi</th>
+                            <th>Aksi</th>
+                            {% comment %} <th>Aksi</th> {% endcomment %}
+                          {% comment %} </tr>
+                        </thead>
+                        <tbody>
+                          {% for pemesanan in pemesanan_list %}
+                          <tr>
+                            <td>{{ pemesanan.id_pemesanan }}</td>
+                            <td>{{ pemesanan.pelanggan.nama_pelanggan }}</td>
+                            <td>{{ pemesanan.no_kamar_id.no_kamar }}</td>
+                            <td>{{ pemesanan.tanggal_checkin }}</td>
+                            <td>{{ pemesanan.tanggal_checkout }}</td>
+                            <td>{{ pemesanan.metode_pembayaran }}</td>
+                            <td>{{ pemesanan.jumlah_pembayaran }}</td> 
+                            <td>{{ pemesanan.id_pembayaran }}</td>
+                            <td>{{ pemesanan.status_konfirmasi }}</td> 
+                            <td>
+                              <form method="post" id="form-setuju" action="{% url 'setuju' pemesanan.id %}">
+                              {% csrf_token %}
+                              <button type="submit" id="form-setuju" class="btn btn-success mb-2"><i class="bi bi-check-lg"></i></button>
+                              </form>
+                              <form method="post" action="{% url 'tolak' pemesanan.id %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+                              </form>
+                            </td>
+                            {% comment %} <td>
+                              <a class='tbl' href="{% url 'ubah_pemesanan' pemesanan_id=pemesanan.id %}"><i class="bi bi-pencil-square"></i></a>
+                              <a class='tbl' href="{% url 'hapus_pemesanan' pemesanan_id=pemesanan.id %}" onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?');"><i class="bi bi-trash"></i></a>
+                            </td> {% endcomment %}
+                           {% comment %}</tr>
+                          {% empty %}
+                          <tr>
+                            <td colspan="10">Tidak ada pemesanan yang tersedia.</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      <!-- End Bordered Table -->
+                    </div>
+                    <div class="text-right">
+                      <p>Jumlah Pemesanan: {{ jumlah_pemesanan }}</p>
+                    </div>
+                    </div>
+                  </div>
+        
+                    </div>
+                  </div>
+        
+                </div>
+
+
+
+
+      </div>
+    </section> {% endcomment %}
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Hotel Diamond</span></strong>. All Rights Reserved
+    </div>
+    <!-- <div class="credits"> -->
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div> -->
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

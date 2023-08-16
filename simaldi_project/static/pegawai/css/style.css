@@ -1,0 +1,253 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group .notification {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-group.success input {
+    border: 1px solid #28a745;
+}
+
+.form-group.success .notification {
+    color: #28a745;
+}
+
+.cardv {
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-left: 500px;
+
+}
+
+.card {
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.card-presensi {
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+  
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+  
+.card-text {
+    margin-bottom: 5px;
+}
+  
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-left: 80px;
+    color: #fff;
+    background-color: #0f1521;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+}
+  
+.btn:hover {
+    color:#fff;
+    background-color: #fe0000;
+}
+  
+.btn:focus {
+    outline: none;
+}
+
+.tbl {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: -200px;
+    margin-left: 50px;
+    color: #fff;
+    background-color: #0f1521;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tbl:hover {
+  color:#fff;
+  background-color: #fe0000;
+}
+
+.tbl:focus {
+  outline: none;
+}
+
+.nbt {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 5px;
+  margin-left: 80px;
+  color: #fff;
+  background-color: #0f1521;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nbt:hover {
+  color:#fff;
+  background-color: #fe0000;
+}
+
+.nbt:focus {
+  outline: none;
+}
+
+
+/* Styles for the form */
+.container {
+    margin-top: 50px;
+  }
+  
+  .cardz {
+    width: 500px;
+    padding: 20px;
+    margin-top: 70px;
+    margin-left: 30%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .card-subtitle {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .notification {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  
+  /* style.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .card-subtitle {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .notification {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  #webcamContainer {
+    position: relative;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  #webcamVideo {
+    width: 400px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
+    
+  }
+  
+  #webcamCanvas {
+    display: none;
+  }
+  
+  #captureButton {
+    margin-bottom: 10px;
+  }
+  
+  #previewImage {
+    width: 280px;
+    height: 200px;
+    margin-left: 70px;
+    margin-top: 10px;
+  }
+  
+  .preview-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    font-size: 18px;
+    margin-top: -5px;
+  }
+
+  /* Additional Styling */
+  body {
+    background-color: #f8f9fa;
+  }
+  
+  .flex-label {
+    justify-content: space-around;
+    align-items: center;
+}
+
+  .flex-container {
+    margin-left: 100px;
+    align-items: center;
+}
+
+
+  
+ 
+  

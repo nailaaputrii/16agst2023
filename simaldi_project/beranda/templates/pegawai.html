@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMALDI Pegawai</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'pegawai/css/style.css' %}">
+</head>
+<body>
+    <div class="cardz">
+        <div class="card-body">
+          <h2 class="card-presensi">PRESENSI PEGAWAI HOTEL DIAMOND</h2>
+          <p class="card-text">Pegawai Hotel Diamond dibagi ke dalam 3 shift, yaitu:</p>
+          <p class="card-text">1. Pagi : 07:00 - 15:00</p>
+          <p class="card-text">2. Siang : 15:00 - 23:00</p>
+          <p class="card-text">3. Malam : 23:00 - 07:00</p>
+          <p class="card-text">Tanggal dan jam saat melakukan presensi akan <b>otomatis diinputkan dan tidak bisa diubah</b> pada saat Anda mengirimkan presensinya.</p>
+          <p class="card-text">Jika Anda melakukan presensi melebihi jam masuk yang sudah ditentukan sesuai shiftnya, maka statusnya dianggap <b>terlambat</b>.</p>
+          <div class="text-center">
+            <a href="{% url 'presensi' %}" class="btn"><b>Presensi</b></a>
+            <a href="{% url 'logoutview' %}" class="btn" onclick="return confirm('Apakah Anda yakin ingin keluar dari akun ini?');"><b>Logout</b></a>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

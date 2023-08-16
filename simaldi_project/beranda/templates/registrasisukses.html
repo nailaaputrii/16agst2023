@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIMALDI Daftar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'Pegawai/css/style.css' %}">
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Registrasi Berhasil</h5>
+          <p class="card-text">Akun anda telah berhasil dibuat, apakah anda ingin login?</p>
+          <a href="{% url 'loginview' %}" class="btn">Ya</a>
+          <a href="{% url 'register' %}" class="btn">Tidak</a>
+        </div>
+      </div>
+</body>
+</html>
